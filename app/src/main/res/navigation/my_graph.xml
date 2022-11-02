@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_graph"
+    app:startDestination="@id/fetch_Fragment">
+
+    <fragment
+        android:id="@+id/fetch_Fragment"
+        android:name="com.example.add_update_fetch_delete.Fetch_Fragment"
+        android:label="fragment_fetch_"
+        tools:layout="@layout/fragment_fetch_">
+        <action
+            android:id="@+id/action_fetch_Fragment_to_insert_Fragment"
+            app:destination="@id/insert_Fragment" />
+        <action
+            android:id="@+id/action_fetch_Fragment_to_update_Fragment"
+            app:destination="@id/update_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/update_Fragment"
+        android:name="com.example.add_update_fetch_delete.Update_Fragment"
+        android:label="fragment_update_"
+        tools:layout="@layout/fragment_update_">
+        <action
+            android:id="@+id/action_update_Fragment_to_fetch_Fragment"
+            app:destination="@id/fetch_Fragment" />
+        <argument
+            android:name="pid"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/insert_Fragment"
+        android:name="com.example.add_update_fetch_delete.Insert_Fragment"
+        android:label="fragment_insert_"
+        tools:layout="@layout/fragment_insert_">
+        <action
+            android:id="@+id/action_insert_Fragment_to_fetch_Fragment"
+            app:destination="@id/fetch_Fragment" />
+    </fragment>
+</navigation>
