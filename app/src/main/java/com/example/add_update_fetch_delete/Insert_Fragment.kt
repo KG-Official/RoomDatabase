@@ -20,6 +20,7 @@ class Insert_Fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.fragment_insert_, container, false)
+        getActivity()?.setTitle("Add Product");
         context?.apply {
             database =DatabaseHelper.getDatabase(this)
         }

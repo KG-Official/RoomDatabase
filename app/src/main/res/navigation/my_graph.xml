@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fetch_Fragment"
         android:name="com.example.add_update_fetch_delete.Fetch_Fragment"
-        android:label="fragment_fetch_"
+        android:label="Inventory"
         tools:layout="@layout/fragment_fetch_">
         <action
             android:id="@+id/action_fetch_Fragment_to_insert_Fragment"

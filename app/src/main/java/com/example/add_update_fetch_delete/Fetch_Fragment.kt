@@ -25,6 +25,7 @@ class Fetch_Fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.fragment_fetch_, container, false)
+        getActivity()?.setTitle("Inventory");
         context?.apply {
             database = DatabaseHelper.getDatabase(this)
         }
