@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -41,16 +42,25 @@ class Update_Fragment : Fragment() {
         view.findViewById<TextInputEditText>(R.id.proStock).setText(pQuentity.toString())
 
 
+
+
         view.findViewById<Button>(R.id.btnUpdate).setOnClickListener {
             var pNAME = view.findViewById<TextInputEditText>(R.id.proName).text.toString()
-            var pPRICE = view.findViewById<TextInputEditText>(R.id.proPrice).text.toString().toLong()
-            var pQUANTITY = view.findViewById<TextInputEditText>(R.id.proStock).text.toString().toLong()
+            var pPRICE = view.findViewById<TextInputEditText>(R.id.proPrice).text.toString()
+            var pQUANTITY = view.findViewById<TextInputEditText>(R.id.proStock).text.toString()
+            if (pNAME.isEmpty() && pPRICE.isEmpty() && pQUANTITY.isEmpty()) {
 
-            GlobalScope.launch {
-                database.productDao().getUpdateProduct(pId,pNAME,pPRICE,pQUANTITY)
+                Toast.makeText(context, "All Fields are Required", Toast.LENGTH_LONG).show()
             }
+            else{
+                GlobalScope.launch {
+                    database.productDao().getUpdateProduct(pId, pNAME, pPRICE.toLong(), pQUANTITY.toLong())
+                }
+                Toast.makeText(context, "Data Updated successfully", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_update_Fragment_to_fetch_Fragment)
 
-            findNavController().navigate(R.id.action_update_Fragment_to_fetch_Fragment)
+
+        }
 
         }
         view.findViewById<AppCompatButton>(R.id.btnCancel).setOnClickListener {

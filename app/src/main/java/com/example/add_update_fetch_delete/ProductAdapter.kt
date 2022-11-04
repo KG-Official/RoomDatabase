@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -46,6 +47,6 @@ class ProductAdapter(
         var nProduct = itemView.findViewById<TextView>(R.id.listProduct)
         var productPrice = itemView.findViewById<TextView>(R.id.listProPrice)
         var productQuantity = itemView.findViewById<TextView>(R.id.listQuantity)
-        var listClick = itemView.findViewById<RelativeLayout>(R.id.itemListBtn)
+        var listClick = itemView.findViewById<LinearLayout>(R.id.itemListBtn)
     }
 }

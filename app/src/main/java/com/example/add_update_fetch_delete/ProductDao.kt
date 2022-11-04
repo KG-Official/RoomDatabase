@@ -26,7 +26,7 @@ interface ProductDao {
     @Query("UPDATE Product SET productName = :pName , productPrice= :pPrice , productQuantity= :pQuentity WHERE productId = :productId")
      fun getUpdateProduct(productId:Long,pName:String,pPrice:Long,pQuentity:Long)
 
-    @Query("SELECT * FROM Product")
+    @Query("SELECT * FROM Product ORDER BY productId DESC")
     fun getProduct() : LiveData<List<Product>>
 
 
