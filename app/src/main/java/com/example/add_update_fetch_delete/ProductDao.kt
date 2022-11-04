@@ -23,8 +23,8 @@ interface ProductDao {
     fun delProduct(productId:Long)
 
 
-    @Query("SELECT * FROM Product WHERE productId == :productId")
-    fun getUpdateProduct(productId:Long):  LiveData<List<Product>>
+    @Query("UPDATE Product SET productName = :pName , productPrice= :pPrice , productQuantity= :pQuentity WHERE productId = :productId")
+     fun getUpdateProduct(productId:Long,pName:String,pPrice:Long,pQuentity:Long)
 
     @Query("SELECT * FROM Product")
     fun getProduct() : LiveData<List<Product>>

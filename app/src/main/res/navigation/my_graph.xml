@@ -28,6 +28,15 @@
         <argument
             android:name="pid"
             app:argType="long" />
+        <argument
+            android:name="pName"
+            app:argType="string" />
+        <argument
+            android:name="pPrice"
+            app:argType="long" />
+        <argument
+            android:name="pQuenitity"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/insert_Fragment"

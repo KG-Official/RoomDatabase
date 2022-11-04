@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.fragment.findNavController
 import androidx.room.Database
 import com.google.android.material.textfield.TextInputEditText
@@ -37,6 +38,9 @@ class Insert_Fragment : Fragment() {
 
           findNavController().navigate(R.id.action_insert_Fragment_to_fetch_Fragment)
 
+        }
+        view.findViewById<AppCompatButton>(R.id.btnCancel).setOnClickListener {
+            findNavController().navigate(R.id.action_insert_Fragment_to_fetch_Fragment)
         }
 
 

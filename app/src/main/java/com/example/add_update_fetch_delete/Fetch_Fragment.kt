@@ -30,9 +30,9 @@ class Fetch_Fragment : Fragment() {
         }
         var productList = view.findViewById<RecyclerView>(R.id.recyclerView_Product_List)
 
-        fun updateData(pid:Long) {
-
-           findNavController().navigate(R.id.action_fetch_Fragment_to_update_Fragment)
+        fun updateData(pid:Long,pName:String,pPrice:Long,pQuentity:Long) {
+          var direction = Fetch_FragmentDirections.actionFetchFragmentToUpdateFragment(pid,pName,pPrice,pQuentity)
+           findNavController().navigate(direction)
         }
 
         fun deleteData(pid:Long) {
@@ -43,14 +43,14 @@ class Fetch_Fragment : Fragment() {
         }
         database.productDao().getProduct().observe(viewLifecycleOwner, Observer {
 
-            fun itemClicked(pid:Long) {
+            fun itemClicked(pid:Long,pName:String,pPrice:Long,pQuentity:Long ){
 
 
                 val dialogBuilder = AlertDialog.Builder(context)
                 dialogBuilder.setMessage("What Do you want to Do Update or Delete?")
                     .setCancelable(true)
                     .setPositiveButton("Update", DialogInterface.OnClickListener {
-                            dialog, id -> updateData(pid)
+                            dialog, id -> updateData(pid,pName,pPrice,pQuentity)
                     })
 
                     .setNegativeButton("Delete", DialogInterface.OnClickListener {
