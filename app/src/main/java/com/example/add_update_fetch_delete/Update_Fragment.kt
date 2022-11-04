@@ -41,16 +41,11 @@ class Update_Fragment : Fragment() {
         view.findViewById<TextInputEditText>(R.id.proPrice).setText(pPrice.toString())
         view.findViewById<TextInputEditText>(R.id.proStock).setText(pQuentity.toString())
 
-
-
-
         view.findViewById<Button>(R.id.btnUpdate).setOnClickListener {
             var pNAME = view.findViewById<TextInputEditText>(R.id.proName).text.toString()
             var pPRICE = view.findViewById<TextInputEditText>(R.id.proPrice).text.toString()
             var pQUANTITY = view.findViewById<TextInputEditText>(R.id.proStock).text.toString()
             if(pNAME.isEmpty() || pPRICE.isEmpty() || pQUANTITY.isEmpty()) {
-
-
                 Toast.makeText(context, "All Fields are Required", Toast.LENGTH_LONG).show()
             }
             else{
@@ -63,14 +58,11 @@ class Update_Fragment : Fragment() {
                 Toast.makeText(context, "Data Updated successfully", Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_update_Fragment_to_fetch_Fragment)
 
-
         }
-
         }
         view.findViewById<AppCompatButton>(R.id.btnCancel).setOnClickListener {
             findNavController().navigate(R.id.action_update_Fragment_to_fetch_Fragment)
         }
-
         return view
     }
 
