@@ -32,7 +32,7 @@ class Insert_Fragment : Fragment() {
             var pPRICE = view.findViewById<TextInputEditText>(R.id.proPrice).text.toString()
             var pQUANTITY = view.findViewById<TextInputEditText>(R.id.proStock).text.toString()
 
-            if (pNAME.isEmpty() && pPRICE.isEmpty() && pQUANTITY.isEmpty()) {
+            if (pNAME.isEmpty() || pPRICE.isEmpty() || pQUANTITY.isEmpty()) {
 
                 Toast.makeText(context, "All Fields are Required", Toast.LENGTH_LONG).show()
 

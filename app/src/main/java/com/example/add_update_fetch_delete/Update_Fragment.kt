@@ -48,13 +48,17 @@ class Update_Fragment : Fragment() {
             var pNAME = view.findViewById<TextInputEditText>(R.id.proName).text.toString()
             var pPRICE = view.findViewById<TextInputEditText>(R.id.proPrice).text.toString()
             var pQUANTITY = view.findViewById<TextInputEditText>(R.id.proStock).text.toString()
-            if (pNAME.isEmpty() && pPRICE.isEmpty() && pQUANTITY.isEmpty()) {
+            if(pNAME.isEmpty() || pPRICE.isEmpty() || pQUANTITY.isEmpty()) {
+
 
                 Toast.makeText(context, "All Fields are Required", Toast.LENGTH_LONG).show()
             }
             else{
+
+                var pPRICE1 = pPRICE.toLong()
+                var pQUANTITY1= pQUANTITY.toLong()
                 GlobalScope.launch {
-                    database.productDao().getUpdateProduct(pId, pNAME, pPRICE.toLong(), pQUANTITY.toLong())
+                    database.productDao().getUpdateProduct(pId, pNAME, pPRICE1, pQUANTITY1)
                 }
                 Toast.makeText(context, "Data Updated successfully", Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_update_Fragment_to_fetch_Fragment)
