@@ -11,12 +11,14 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.add_update_fetch_delete.databinding.FragmentUpdateBinding
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
 class Update_Fragment : Fragment() {
+    private  lateinit var  binding: FragmentUpdateBinding
     lateinit var database: DatabaseHelper
     private val args : Update_FragmentArgs by navArgs()
     private var pId : Long = 0
@@ -26,7 +28,7 @@ class Update_Fragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.fragment_update_, container, false)
+        binding = FragmentUpdateBinding.inflate(inflater,container,false)
         getActivity()?.setTitle("Edit Product");
 
         pId = args.pid
@@ -37,14 +39,14 @@ class Update_Fragment : Fragment() {
         context?.apply {
             database = DatabaseHelper.getDatabase(this)
         }
-        view.findViewById<TextInputEditText>(R.id.proName).setText(pName)
-        view.findViewById<TextInputEditText>(R.id.proPrice).setText(pPrice.toString())
-        view.findViewById<TextInputEditText>(R.id.proStock).setText(pQuentity.toString())
+        binding.proName.setText(pName)
+        binding.proPrice.setText(pPrice.toString())
+        binding.proStock.setText(pQuentity.toString())
 
-        view.findViewById<Button>(R.id.btnUpdate).setOnClickListener {
-            var pNAME = view.findViewById<TextInputEditText>(R.id.proName).text.toString()
-            var pPRICE = view.findViewById<TextInputEditText>(R.id.proPrice).text.toString()
-            var pQUANTITY = view.findViewById<TextInputEditText>(R.id.proStock).text.toString()
+        binding.btnUpdate.setOnClickListener {
+            var pNAME = binding.proName.text.toString()
+            var pPRICE = binding.proPrice.text.toString()
+            var pQUANTITY = binding.proStock.text.toString()
             if(pNAME.isEmpty() || pPRICE.isEmpty() || pQUANTITY.isEmpty()) {
                 Toast.makeText(context, "All Fields are Required", Toast.LENGTH_LONG).show()
             }
@@ -60,10 +62,10 @@ class Update_Fragment : Fragment() {
 
         }
         }
-        view.findViewById<AppCompatButton>(R.id.btnCancel).setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             findNavController().navigate(R.id.action_update_Fragment_to_fetch_Fragment)
         }
-        return view
+        return binding.root
     }
 
 }

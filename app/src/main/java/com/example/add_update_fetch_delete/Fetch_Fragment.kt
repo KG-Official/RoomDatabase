@@ -14,25 +14,28 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.add_update_fetch_delete.databinding.FragmentFetchBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
 class Fetch_Fragment : Fragment() {
+    private lateinit var binding: FragmentFetchBinding
     lateinit var database: DatabaseHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.fragment_fetch_, container, false)
+        binding = FragmentFetchBinding.inflate(inflater,container,false)
         getActivity()?.setTitle("Inventory");
         context?.apply {
             database = DatabaseHelper.getDatabase(this)
         }
-        var productList = view.findViewById<RecyclerView>(R.id.recyclerView_Product_List)
+
+        val productList = binding.recyclerViewProductList
 
         fun updateData(pid:Long,pName:String,pPrice:Long,pQuentity:Long) {
-          var direction = Fetch_FragmentDirections.actionFetchFragmentToUpdateFragment(pid,pName,pPrice,pQuentity)
+          val direction = Fetch_FragmentDirections.actionFetchFragmentToUpdateFragment(pid,pName,pPrice,pQuentity)
            findNavController().navigate(direction)
         }
 
@@ -42,6 +45,7 @@ class Fetch_Fragment : Fragment() {
             }
             Toast.makeText(context, "Data Deleted successfully", Toast.LENGTH_LONG).show()
         }
+
         database.productDao().getProduct().observe(viewLifecycleOwner, Observer {
 
             fun itemClicked(pid:Long,pName:String,pPrice:Long,pQuentity:Long ){
@@ -71,11 +75,11 @@ class Fetch_Fragment : Fragment() {
         })
 
 
-        view.findViewById<FloatingActionButton>(R.id.floatingActionButton2).setOnClickListener{
+        binding.floatingActionButton2.setOnClickListener{
             findNavController().navigate(R.id.action_fetch_Fragment_to_insert_Fragment)
         }
 
-        return view
+        return binding.root
     }
 
 }

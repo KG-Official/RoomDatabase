@@ -10,21 +10,21 @@ import androidx.room.Update
 @Dao
 interface ProductDao {
     @Insert
-    fun insertProduct(product: Product)
+  suspend  fun insertProduct(product: Product)
 
     @Update
-    fun updateProduct(product: Product)
+  suspend  fun updateProduct(product: Product)
 
     @Delete
-    fun deleteProduct(product: Product)
+   suspend fun deleteProduct(product: Product)
 
 
     @Query("DELETE FROM Product WHERE productId == :productId")
-    fun delProduct(productId:Long)
+   suspend fun delProduct(productId:Long)
 
 
     @Query("UPDATE Product SET productName = :pName , productPrice= :pPrice , productQuantity= :pQuentity WHERE productId = :productId")
-     fun getUpdateProduct(productId:Long,pName:String,pPrice:Long,pQuentity:Long)
+   suspend  fun getUpdateProduct(productId:Long,pName:String,pPrice:Long,pQuentity:Long)
 
     @Query("SELECT * FROM Product ORDER BY productId DESC")
     fun getProduct() : LiveData<List<Product>>
